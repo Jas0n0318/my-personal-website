@@ -66,20 +66,21 @@
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-	.hero {
-	  background-image: url("header.jpg");
-	  background-size: cover;
-	  background-position: center;
-	  position: relative;
-	  height: 250px;
-	  display: flex;
-	  align-items: center;
-	  justify-content: center;
-	  text-align: center;
-	}
+    .hero {
+	background-image: url("header.jpg");
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	height: 250px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+    }
 
-	.hero .overlay {
-	  background-color: rgba(0, 0, 0, 0.5); /* 黑色半透明遮罩 */
+	  /* 黑色半透明遮罩 */
+    .hero .overlay {
+	  background-color: rgba(0, 0, 0, 0.5); 
 	  width: 100%;
 	  height: 100%;
 	  color: white;
@@ -103,6 +104,20 @@
 	  color: #223663;
 	  border-radius: 8px;
 	}
+
+	  /*動畫初始*/
+	body, html {
+	  margin: 0;
+	  padding: 0;
+	  overflow-x: hidden;      /* 避免動畫時出現水平捲軸 */
+	}
+
+	.container {
+	  position: relative;     
+	  right: -100px;          
+	  opacity: 0;             
+	}
+
 
   </style>
 </head>
@@ -174,11 +189,21 @@
     </div>
   </section>
 
+  <script>
+	$(document).ready(function(){
+	$(".container").animate({
+	right: "0px",      // 滑入到原本位置
+	opacity: 1       
+	}, 800);            // 800毫秒
+	});
+  </script>
+
   <footer>
     &copy; 2025 06 吳晏均 | 手工打造個人網站
   </footer>
 </body>
 </html>
+
 
 
 
