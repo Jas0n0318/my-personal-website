@@ -106,7 +106,7 @@
 	}
 
 	  /*動畫初始*/
-	body {
+	.page-content {
 	  position: fixed;
 	  margin: 0;
 	  padding: 0;
@@ -134,6 +134,7 @@
     <a href="#contact">聯絡我</a>
   </nav>
 
+ <div class="page-content">
   <section id="about">
     <h2>自我介紹</h2>
     <p>我是吳晏均，目前大學二年級，主修數位學習科技學系。本科系主要培養學生在「教育」與科技兩大領域的跨領域能力。目前正運用所學於「程式設計老師」的工作中，協助學生理解邏輯概念、尋找/除錯問題，強化學生的學習動機與成果
@@ -189,18 +190,20 @@
     </div>
   </section>
 
+  </div>
+
   <script>
-	$("body").animate({
+	$(".page-content").animate({
 	  right:"0px",
 	  opacity:1
 	},800);
 
 	$("#youtube_btn1").click(function() {
-	  $(#youtube1").slideToggle();
+	  $("#youtube1").slideToggle();
 	    });
 
 	$("#youtube_btn2").click(function() {
-	  $(#youtube2").slideToggle();
+	  $("#youtube2").slideToggle();
 	    });
 
   </script>
@@ -210,6 +213,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
