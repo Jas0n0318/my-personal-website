@@ -113,13 +113,19 @@
 	  display: flex;
   	  align-items: flex-start;
 	}
+
+	#about{
+	  display: flex;
+	  max-width: 800px;   /* 限制整體寬度 */
+	  margin: auto;       /* 置中 */
+	  padding: 40px 20px; /* 留左右邊距 */
 	  
-	.about-wrapper p{
+	#about-wrapper p{
 	  flex: 1;                /* 文字占左邊空間 */
 	  margin-right: 20px; 
 	}
 
-	.about-wrapper img{
+	#about-wrapper img{
 	  width: 100px;
 	  border-radius: 10px;
 	  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
@@ -173,11 +179,13 @@
  <div class="page-content">
   <section id="about">
     <h2>自我介紹</h2>
-    <p class="about-wrapper">我是吳晏均，目前大學二年級，主修數位學習科技學系。<br>本科系主要培養學生在「教育」與科技兩大領域的跨領域能力。目前正運用所學於「程式設計老師」的工作中，協<br>助學生理解邏輯概念、尋找/除錯問題，強化學生的學習動機與成果
+    <div id="about-wrapper">
+    <p>我是吳晏均，目前大學二年級，主修數位學習科技學系。<br>本科系主要培養學生在「教育」與科技兩大領域的跨領域能力。目前正運用所學於「程式設計老師」的工作中，協<br>助學生理解邏輯概念、尋找/除錯問題，強化學生的學習動機與成果
 	    。在累積豐富教學技巧的同時，也培養了清<br>晰的溝通、領導能力。我的個性溫和、樂於與人合作具備良好的團隊精神與溝通能力。在高中、大學擔任吉他社<br>與多項班級幹部，累積豐富的活動企劃與執行經驗，也善於觀察與
 	    理解他人情緒，能夠快速融入團隊並建立信任關係。
     </p>
-    <img src="images_me.jpg" class="about-wrapper">
+    <img src="images_me.jpg">
+    </div>
 	  
   </section>
 
@@ -251,6 +259,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
