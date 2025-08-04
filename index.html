@@ -110,12 +110,9 @@
 	  margin: 0;
 	  padding: 0;
 	  overflow-x: hidden;      /* 避免動畫時出現水平捲軸 */
-	}
-
-	.container {
 	  position: relative;     
-	  right: -100px;          
-	  opacity: 0;             
+	  right: -200px;          
+	  opacity: 0;    
 	}
 
 
@@ -190,7 +187,7 @@
   </section>
 
   <script>
-	$(document).ready(function(){
+	$(body).ready(function(){
 	$(".container").animate({
 	right: "0px",      // 滑入到原本位置
 	opacity: 1       
@@ -203,6 +200,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
