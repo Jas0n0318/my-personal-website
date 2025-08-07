@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>抽籤</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <style>
+          body {
+          padding: 60px;
+          text-align: center;
+          }
+          
+          img {
+              height: 200px;
+          }
+          
+          textarea {
+              width: 30vw;
+              height: 10vh;
+              padding: 25px;
+              margin: 25px auto;
+              font-size: 18px;
+              border: 4px solid #ad3421;
+              border-radius: 8px;
+              display: block;
+          }
+          
+          button {
+              width: 30vw;
+              padding: 10px;
+              margin: 5px auto;
+              font-size: 25px;
+              color:#fff;
+              border-width: 0px;
+              border-radius: 5px;
+              background-color: #c71b00;
+              display: block;
+              cursor: pointer;
+          }
+          </style>
+      
+        
+    </head>
+    
+    <body>
+        <img src='ok.png' id='img-ok'>
+        <img src='shake.gif' id='img-shake'>
+        <h1 id='result'></h1>
+        <textarea id='textarea'></textarea>
+        <button id='start'>開抽！</button>
+
+        <script>
+          $('#img-shake').hide();
+
+          $('#start').on('click', getResult) ;
+          
+          function getResult() {
+              var content = $("#textarea").val();
+              var options = content.split("\n");
+              var rand = Math.floor(Math.random() * options.length);
+              
+              $("#img-shake").show();
+              $("#img-ok").hide();
+              $("#result").text('等待開獎結果...');
+              
+              setTimeout(function() {
+                  $("#img-shake").hide();
+                  $("#img-ok").show();
+                  $("#result").text('開獎結果：' + options[rand]);
+              }, 3000);
+          }
+        </script>
+    </body>
+</html>
