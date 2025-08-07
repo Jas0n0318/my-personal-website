@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>抽籤</title>
+        <title>自定義抽籤</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <style>
           body {
@@ -35,6 +35,12 @@
               display: block;
               cursor: pointer;
           }
+
+          h2 {
+              width: 20vw;
+              text-align: center;
+          }
+            
           </style>
       
         
@@ -46,6 +52,7 @@
         <h1 id='result'></h1>
         <textarea id='textarea'></textarea>
         <button id='start'>開抽！</button>
+        <h2>小提示：列出多個選項並以「行」為單位切割選項</h2>
 
         <script>
           $('#img-shake').hide();
@@ -65,7 +72,7 @@
                   $("#img-shake").hide();
                   $("#img-ok").show();
                   $("#result").text('開獎結果：' + options[rand]);
-              }, 3000);
+              }, 4000);
           }
         </script>
     </body>
