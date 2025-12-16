@@ -4,162 +4,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <meta charset="UTF-8">
   <title>個人形象網站</title>
-  <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-
-    header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    nav {
-      background-color: #34495e;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 15px 20px;
-      display: inline-block;
-      transition: background-color 0.3s;
-    }
-
-    nav a:hover {
-      background-color: #35879c;
-    }
-
-    section {
-      padding: 40px;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .cat-img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    footer {
-      background-color: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
-    }
-
-    .contact-box {
-      background-color: #ecf0f1;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    .hero {
-	background-image: url("header.jpg");
-	background-size: cover;
-	background-position: center;
-	position: relative;
-	height: 250px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-    }
-
-	  /* 黑色半透明遮罩 */
-    .hero .overlay {
-	background-color: rgba(0, 0, 0, 0.5); 
-	width: 100%;
-	height: 100%;
-	color: white;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	padding: 0px;
-    }
-
-	.hero h1 {
-	  font-size: 2.5em;
-	  margin: 0;
-	}
-
-	.hero p {
-	  font-size: 1.2em;
-	  margin-top: 10px;
-	}
-
-	h2 {
-	  color: #223663;
-	  border-radius: 8px;
-	}
-
-	#about-wrapper {
-	  display: flex;
-	  align-items: flex-start;
-	  max-width: 800px;
-	  margin: auto;
-	  padding: 40px 20px;
-	}
-
-	#about-wrapper p {
-	  flex: 1;
-	  margin-right: 20px;
-	}
-	
-	#about-wrapper img {
-	  width: 250px;               /* 可調整寬度 */
-	  border-radius: 10px;
-	  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-	}
-
-
-	button{
-	  background-color:#082a33;
-	  color:white;
-	  border:none;
-	  padding:10px 20px;
-	  margin:10px 0;
-	  cursor:pointer;
-	  border-radius:6px;
-	  transition:background-color 0.3s,transform 0.2s;
-	}
-	button:hover{
-	  background-color:#3e8394;
-	  transform:translateY(-2px);
-	}
-
-
-	  /*動畫初始*/
-	.page-content {
-	  margin: 0;
-	  padding: 0;
-	  overflow-x: hidden;      /* 避免動畫時出現水平捲軸 */
-	  position: relative;     
-	  right: -800px;          
-	  opacity: 0;    
-	}
-
-
-  </style>
+  
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="hero">
-	<div class="overlay">
-		<h1>個人形象網站</h1>
-		<p>吉他譜分享/教學</p>
-	</div>
+    <div class="overlay">
+      <h1>個人形象網站</h1>
+      <p>吉他譜分享/教學</p>
+    </div>
   </header>
 
   <nav>
@@ -167,95 +20,90 @@
     <a href="#experience">我的經歷</a>
     <a href="#guitar">吉他作品集</a>
     <a href="#teaching">教學內容</a>
-    <a href="game/" target="_self">自定義抽籤</a>
+    <a href="game/" class="nav-portfolio" target="_self">作品集</a>
     <a href="#contact">聯絡我</a>
   </nav>
 
   <div class="page-content">
-  <section id="about">
-    <h2>自我介紹</h2>
-    <div id="about-wrapper">
-    <p>我是吳晏均，目前大學二年級，主修數位學習科技學系。本科系主要培養學生在「教育」與科技兩大領域的跨領域能力。目前正運用所學於「程式設計老師」的工作中，協助學生理解邏輯概念、尋找/除錯問題，強化學生的學習動機與成果
-	    。在累積豐富教學技巧的同時，也培養了清晰的溝通、領導能力。我的個性溫和、樂於與人合作具備良好的團隊精神與溝通能力。在高中、大學擔任吉他社與多項班級幹部，累積豐富的活動企劃與執行經驗，也善於觀察與
-	    理解他人情緒，能夠快速融入團隊並建立信任關係。
-    </p>
-    <img src="images_me.jpg">
- </div>
-	  
-  </section>
+    <section id="about">
+      <h2>自我介紹</h2>
+      <div id="about-wrapper">
+        <p>我是吳晏均，目前大學二年級，主修數位學習科技學系。本科系主要培養學生在「教育」與科技兩大領域的跨領域能力。目前正運用所學於「程式設計老師」的工作中，協助學生理解邏輯概念、尋找/除錯問題，強化學生的學習動機與成果
+        。在累積豐富教學技巧的同時，也培養了清晰的溝通、領導能力。我的個性溫和、樂於與人合作具備良好的團隊精神與溝通能力。在高中、大學擔任吉他社與多項班級幹部，累積豐富的活動企劃與執行經驗，也善於觀察與
+        理解他人情緒，能夠快速融入團隊並建立信任關係。
+        </p>
+        <img src="images/images_me.jpg" alt="吳晏均的照片">
+      </div>
+    </section>
 
-  <section id="experience">
-    <h2>我的經歷</h2>
-    <p>工作經歷方面，我目前任職的程式設計老師需要協助Scrach、Python、JavaScript、HTML/CSS的學生，暑假也有教學國小4~6年級的Roblox Studio營隊。擅長引導學生偵錯，
-	有耐心的陪伴學生一起處理問題。同時也具備了美感與空間感，受聘於學校的教務處教學組製作課程宣傳海報和維護後台，也有使用blender製作過動畫的經驗。目前致
-	力於在職場中學習，對於版面編排與網頁設計很感興趣！<br><br>我重視學習與反思，樂於接觸新事物，期待未來能持續拓展跨領域的專業能力，並與團隊一同創造價值。</p>
-  </section>
+    <section id="experience">
+      <h2>我的經歷</h2>
+      <p>工作經歷方面，我目前任職的程式設計老師需要協助Scrach、Python、JavaScript、HTML/CSS的學生，暑假也有教學國小4~6年級的Roblox Studio營隊。擅長引導學生偵錯，
+      有耐心的陪伴學生一起處理問題。同時也具備了美感與空間感，受聘於學校的教務處教學組製作課程宣傳海報和維護後台，也有使用blender製作過動畫的經驗。目前致
+      力於在職場中學習，對於版面編排與網頁設計很感興趣！<br><br>我重視學習與反思，樂於接觸新事物，期待未來能持續拓展跨領域的專業能力，並與團隊一同創造價值。</p>
+    </section>
 
-  <section id="guitar">
-  <h2>吉他作品集</h2>
-  <p>過往的表演/活動紀錄</p>
-  
-  <h3>大學成果發表《夢境》</h3>
-  <p>曲目：〈不愛自己了〉</p>
-  <button id="youtube_btn1">顯示/隱藏</button>
-  <iframe width="560" height="315" id="youtube1"
-          src="https://www.youtube.com/embed/ZzYrKpaR1D4" 
-          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen></iframe>
+    <section id="guitar">
+      <h2>吉他作品集</h2>
+      <p>過往的表演/活動紀錄</p>
+      
+      <h3>大學成果發表《夢境》</h3>
+      <p>曲目：〈不愛自己了〉</p>
+      <button id="youtube_btn1">顯示/隱藏</button>
+      <iframe width="560" height="315" id="youtube1"
+              src="https://www.youtube.com/embed/ZzYrKpaR1D4" 
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen></iframe>
 
-  <h3>高中小型成發《修蛋吉勒》</h3>
-  <p>曲目：〈讓我為你唱情歌〉</p>
-  <button id="youtube_btn2">顯示/隱藏</button>
-  <iframe width="560" height="315" id="youtube2"
-          src="https://www.youtube.com/embed/GF0beGb34go" 
-          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen></iframe>
-  
-</section>
+      <h3>高中小型成發《修蛋吉勒》</h3>
+      <p>曲目：〈讓我為你唱情歌〉</p>
+      <button id="youtube_btn2">顯示/隱藏</button>
+      <iframe width="560" height="315" id="youtube2"
+              src="https://www.youtube.com/embed/GF0beGb34go" 
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen></iframe>
+    </section>
 
 
-  <section id="teaching">
-    <h2>教學內容</h2>
-    <p>分享新手吉他教學與課程筆記，會持續更新：</p>
-    <ul>
-      <li>和弦的組成——三和弦與七和弦</li>
-	  <iframe src="chord_0.pdf" width="100%" height="600px"></iframe>
-    </ul>
-  </section>
+    <section id="teaching">
+      <h2>教學內容</h2>
+      <p>分享新手吉他教學與課程筆記，會持續更新：</p>
+      <ul>
+        <li>和弦的組成——三和弦與七和弦</li>
+        <iframe src="assets/chord_0.pdf" width="100%" height="600px"></iframe>
+      </ul>
+    </section>
 
-  <section id="contact">
-    <h2>聯絡我</h2>
-    <div class="contact-box">
-      <p>如果你對我的吉他/國小、國中學科家教、有興趣，歡迎來信聯絡我！</p>
-      <p>📧 電子信箱：jason2005940318@gmail.com</p>
-      <p>📱 電話：0926-147-755</p>
-    </div>
-  </section>
+    <section id="contact">
+      <h2>聯絡我</h2>
+      <div class="contact-box">
+        <p>如果你對我的吉他/國小、國中學科家教、有興趣，歡迎來信聯絡我！</p>
+        <p>📧 電子信箱：jason2005940318@gmail.com</p>
+        <p>📱 電話：0926-147-755</p>
+      </div>
+    </section>
 
   </div>
 
   <script>
-	$(".page-content").animate({
-	  right:"0px",
-	  opacity:1
-	},800);
+    $(".page-content").animate({
+      right:"0px",
+      opacity:1
+    },800);
 
-	$("#youtube_btn1").click(function() {
-	  $("#youtube1").slideToggle();
-	    });
+    $("#youtube_btn1").click(function() {
+      $("#youtube1").slideToggle();
+    });
 
-	$("#youtube_btn2").click(function() {
-	  $("#youtube2").slideToggle();
-	    });
-
+    $("#youtube_btn2").click(function() {
+      $("#youtube2").slideToggle();
+    });
   </script>
+
+  <script src="js/chat.js"></script>
 
   <footer>
     &copy; 2025 06 吳晏均 | 手工打造個人網站
   </footer>
 </body>
 </html>
-
-
-
-

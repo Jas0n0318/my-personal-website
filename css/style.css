@@ -1,0 +1,492 @@
+/* =========================================
+   1. 全域設定 & 變數 (讓修改顏色更方便)
+   ========================================= */
+:root {
+  --primary-color: #35879c;       /* 主色調：你的藍綠色 */
+  --primary-dark: #246070;        /* 深色主色：Hover用 */
+  --secondary-color: #2c3e50;     /* 次要色：深藍灰 */
+  --text-color: #333;             /* 文字色 */
+  --bg-color: #f8f9fa;            /* 背景色：比起純白，帶一點灰更柔和 */
+  --card-bg: #ffffff;             /* 卡片背景：純白 */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.15);
+  --radius: 12px;                 /* 圓角統一 */
+}
+
+/* 引入 Google Fonts: Noto Sans TC (中文) + Poppins (英文標題) */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Poppins:wght@400;600&display=swap');
+
+html {
+  scroll-behavior: smooth; /* 點擊導覽列時會平滑捲動 */
+}
+
+body {
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6; /* 增加行高，讓文字更好閱讀 */
+}
+
+/* =========================================
+   2. 導覽列 (Sticky Navigation)
+   ========================================= */
+nav {
+  background-color: rgba(44, 62, 80, 0.95); /* 半透明背景 */
+  backdrop-filter: blur(10px); /* 磨砂玻璃效果 (現代感關鍵) */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: sticky; /* 黏在頂端 */
+  top: 0;
+  z-index: 100; /* 確保蓋過內容 */
+  box-shadow: var(--shadow-sm);
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 15px 24px;
+  display: inline-block;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* 滑鼠移過去的底線動畫 */
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 10px;
+  left: 50%;
+  background-color: var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 80%;
+  left: 10%;
+}
+
+nav a:hover {
+  color: var(--primary-color);
+}
+
+/* =========================================
+   3. Hero 區塊 (首頁大圖 - 背景圖+遮罩版)
+   ========================================= */
+.hero {
+  /* 1. 設定背景圖片 */
+  background-image: url("../images/header.jpg");
+  /* 確保圖片覆蓋整個區塊，且居中顯示 */
+  background-size: cover;
+  background-position: center;
+  /* 視差滾動效果 (圖片固定，網頁捲動)，增加高級感 */
+  background-attachment: fixed; 
+  
+  position: relative;
+  /* 設定高度：可以是固定像素 (如 450px) 或是螢幕高度的百分比 (如 60vh) */
+  height: 50vh; 
+  min-height: 400px; /* 至少要有 400px 高 */
+
+  /* 讓內部的 overlay 能夠填滿這裡 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* 這裡不需要內距，因為 overlay 會填滿 */
+}
+
+/* 2. 深色遮罩層 */
+.hero .overlay {
+  /* 關鍵：使用深色漸層遮罩 */
+  /* 從「深藍灰」漸層到「深黑色」，透明度約 70% (0.7)，確保文字清晰 */
+  background: linear-gradient(135deg, rgba(44, 62, 80, 0.8), rgba(0, 0, 0, 0.7));
+  
+  /* 強制填滿整個 hero 區塊 */
+  width: 100%;
+  height: 100%;
+  
+  /* 內容置中對齊 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white; /* 文字統一為白色 */
+  padding: 20px; /* 防止手機版文字貼邊 */
+}
+
+/* 移除之前加的 .hero-image 樣式，因為不需要了 */
+/* .hero-image { ... } */
+
+.hero h1 {
+  font-size: 3.5em; /* 標題大一點更有氣勢 */
+  margin: 0 0 15px 0;
+  font-weight: 700;
+  /* 加上文字陰影，讓字與背景分離度更好 */
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  letter-spacing: 2px;
+}
+
+.hero p {
+  font-size: 1.4em;
+  color: rgba(255, 255, 255, 0.9); /* 稍微透明一點的白色 */
+  font-weight: 300;
+  margin-top: 0;
+  text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+}
+/* =========================================
+   4. 通用版面與區塊
+   ========================================= */
+section {
+  padding: 80px 20px; /* 增加上下留白 */
+  max-width: 900px;
+  margin: auto;
+}
+
+h2 {
+  color: var(--secondary-color);
+  font-size: 2em;
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+}
+
+/* 標題下方的裝飾線 */
+h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: var(--primary-color);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* =========================================
+   5. 關於我 (圖文排版)
+   ========================================= */
+#about-wrapper {
+  display: flex;
+  align-items: center; /* 垂直置中 */
+  gap: 40px; /* 圖片與文字的間距 */
+  background-color: var(--card-bg);
+  padding: 40px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+
+/* 讓手機版變成垂直排列 */
+@media (max-width: 768px) {
+  #about-wrapper {
+    flex-direction: column-reverse; /* 手機版圖片在上面(或下面看你想怎麼排) */
+  }
+}
+
+#about-wrapper p {
+  flex: 1;
+  font-size: 1.05em;
+  color: #555;
+  margin: 0;
+}
+
+#about-wrapper img {
+  width: 280px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s;
+}
+
+#about-wrapper img:hover {
+  transform: scale(1.02); /* 滑鼠移過去稍微放大 */
+}
+
+/* =========================================
+   6. 經歷 & 教學 (卡片式設計)
+   ========================================= */
+/* 這裡假設你的經歷段落可以用一個 div 包起來，或者直接套用 p */
+section#experience p, 
+section#teaching ul {
+  background-color: var(--card-bg);
+  padding: 30px;
+  border-radius: var(--radius);
+  border-left: 5px solid var(--primary-color); /* 左側裝飾線 */
+  box-shadow: var(--shadow-sm);
+  line-height: 1.8;
+}
+
+/* =========================================
+   7. 吉他作品 (影片與按鈕)
+   ========================================= */
+h3 {
+  color: var(--primary-dark);
+  margin-top: 40px;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  margin: 15px 0;
+  cursor: pointer;
+  border-radius: 30px; /* 變回膠囊狀 */
+  font-size: 0.95em;
+  font-weight: 500;
+  box-shadow: 0 4px 6px rgba(53, 135, 156, 0.3);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px); /* 向上浮起 */
+  box-shadow: 0 6px 12px rgba(53, 135, 156, 0.4);
+}
+
+iframe {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  margin-top: 10px;
+  max-width: 100%; /* 確保手機不破版 */
+}
+
+/* =========================================
+   8. 聯絡我 & Footer
+   ========================================= */
+.contact-box {
+  background: linear-gradient(135deg, #ecf0f1, #e3e8eb);
+  padding: 40px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  border: 1px solid white;
+}
+
+.contact-box p {
+  font-size: 1.1em;
+  margin: 10px 0;
+}
+
+footer {
+  background-color: var(--secondary-color);
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  padding: 30px;
+  margin-top: 60px;
+  font-size: 0.9em;
+}
+
+/* =========================================
+   9. 動畫初始狀態
+   ========================================= */
+.page-content {
+  position: relative;     
+  right: -50px; /* 不需要移動太遠，稍微動一下就好 */         
+  opacity: 0;    
+  /* 注意：動畫邏輯在你的 index.html JS 裡 */
+}
+
+/* =========================================
+   10. AI Chatbot 樣式 (保留原本修正好的)
+   ========================================= */
+#chat-toggle-btn {
+  position: fixed;
+  bottom: 30px; /* 稍微提高一點 */
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 4px 15px rgba(53, 135, 156, 0.4);
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 2000;
+  transition: transform 0.3s, background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#chat-toggle-btn:hover {
+  transform: scale(1.1) rotate(10deg);
+  background-color: var(--secondary-color);
+}
+
+#chat-container {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 350px;
+  height: 520px; /* 稍微加高 */
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  z-index: 2000;
+  display: none;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+#chat-header {
+  height: 60px;
+  min-height: 60px;
+  background: linear-gradient(to right, var(--secondary-color), var(--primary-dark)); /* 漸層標題 */
+  color: white;
+  padding: 0 20px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 1.1em;
+}
+
+.header-actions button {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.8);
+  cursor: pointer;
+  margin-left: 15px;
+  font-size: 18px;
+  transition: color 0.2s;
+}
+
+.header-actions button:hover {
+  color: white;
+}
+
+#chat-messages {
+  flex: 1; 
+  overflow-y: auto; 
+  overscroll-behavior: contain;
+  padding: 20px;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#chat-input-area {
+  height: 70px;
+  min-height: 70px;
+  border-top: 1px solid #eee;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+#user-input {
+  flex: 1;
+  height: 40px;
+  padding: 0 15px;
+  border: 1px solid #eee;
+  background-color: #f4f6f8;
+  border-radius: 20px;
+  outline: none;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+#user-input:focus {
+  border-color: var(--primary-color);
+  background-color: white;
+}
+
+#send-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0 20px;
+  margin-left: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  height: 40px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(53, 135, 156, 0.3);
+}
+
+#send-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.message {
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-size: 0.95em;
+  line-height: 1.5;
+  word-wrap: break-word;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.user-message {
+  align-self: flex-end;
+  background-color: var(--primary-color);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.bot-message {
+  align-self: flex-start;
+  background-color: white;
+  color: #444;
+  border-bottom-left-radius: 4px;
+  border: 1px solid #eee;
+}
+
+/* =========================================
+   特別樣式：作品集按鈕 (垂掛書籤版)
+   ========================================= */
+.nav-portfolio {
+  background-color: #e74c3c; /* 顯眼的紅色或橘色 */
+  color: white !important;
+  
+  /* 形狀設定：下方圓角，上方直角，像個標籤 */
+  border-radius: 0 0 8px 8px; 
+  padding: 15px 20px !important; /* 加長高度 */
+  margin: 0 15px;
+  
+  /* 關鍵位置設定：讓它無視導覽列的中線，往下垂 */
+  position: relative;
+  top: 0; /* 初始位置 */
+  height: auto;
+  align-self: flex-start; /* 讓它靠上對齊，這樣 padding 增加時會往下長 */
+  
+  /* 視覺微調 */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 彈跳效果 */
+}
+
+/* 為了讓它真的有「垂下來」的感覺，我們需要微調原本 nav 的對齊 */
+nav {
+  align-items: flex-start; /* 讓所有連結靠上對齊 */
+}
+
+/* 其他連結需要補回一點上方內距，保持垂直置中 */
+nav a:not(.nav-portfolio) {
+  margin-top: 5px; 
+}
+
+/* 滑鼠移過去：像拉繩子一樣拉下來 */
+.nav-portfolio:hover {
+  background-color: #c0392b;
+  padding-top: 25px !important; /* 變長 */
+  transform: translateY(5px); /* 往下拉 */
+}
+
+/* 移除原本的底線動畫 */
+.nav-portfolio::after {
+  display: none !important;
+}
