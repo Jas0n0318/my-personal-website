@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Java 五子棋 AI 演算法 | 吳晏均的作品集</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+    /* --- 專案專屬風格 (Deep Intelligence Blue) --- */
+    body {
+      background-color: #f4f6f9;
+      padding-top: 80px;
+    }
+
+    .project-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .project-header h1 {
+      color: #2c3e50;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto 60px auto;
+      padding: 0 20px;
+    }
+
+    /* 卡片區塊 */
+    .section-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      padding: 40px;
+      margin-bottom: 30px;
+      border-left: 5px solid #3498db; /* 藍色側邊條 */
+    }
+
+    .section-card h2 {
+      color: #2c3e50;
+      margin-top: 0;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* 程式碼展示區 (Code Block) */
+    .code-display {
+      background: #282c34;
+      color: #abb2bf;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.9em;
+      overflow-x: auto;
+      margin: 20px 0;
+      position: relative;
+    }
+
+    .code-display::before {
+      content: "Java";
+      position: absolute;
+      top: 0; right: 0;
+      background: #3498db;
+      color: white;
+      padding: 3px 10px;
+      font-size: 0.8em;
+      border-bottom-left-radius: 8px;
+    }
+
+    /* 關鍵字高亮 */
+    .kw { color: #c678dd; } /* public, class */
+    .type { color: #e5c07b; } /* int, double */
+    .func { color: #61afef; } /* method names */
+    .comment { color: #7f848e; font-style: italic; }
+
+    /* --- 新版流程圖：邏輯拆解 (Logic Cards) --- */
+    .logic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .logic-card {
+      background: #f8f9fa;
+      border: 1px solid #e1e4e8;
+      border-radius: 8px;
+      padding: 20px;
+      position: relative;
+      transition: transform 0.3s;
+    }
+
+    .logic-card:hover {
+      transform: translateY(-5px);
+      border-color: #3498db;
+      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+    }
+
+    .logic-icon {
+      font-size: 2em;
+      color: #3498db;
+      margin-bottom: 15px;
+    }
+
+    .logic-title {
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+
+    .logic-desc {
+      color: #666;
+      font-size: 0.9em;
+      line-height: 1.6;
+    }
+
+    /* 權重標籤 */
+    .weight-tag {
+      display: inline-block;
+      background: #e1f5fe;
+      color: #0288d1;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.85em;
+      margin-right: 5px;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav style="position:fixed; top:0; width:100%; z-index:1000; background:white; border-bottom:1px solid #eee; padding:15px 0;">
+    <div style="max-width:1000px; margin:0 auto; padding:0 20px;">
+      <a href="index.html" style="text-decoration:none; color:#555; font-weight:bold;">← 回作品集列表</a>
+      <span style="color:#ddd; margin:0 10px;">|</span>
+      <span style="color:#3498db;">Java Gomoku AI</span>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <header class="project-header">
+      <h1>Java 五子棋 AI 核心演算法</h1>
+      <p style="color:#666;">基於權重評估與攻守策略的智慧決策系統</p>
+      
+      <div style="margin-top:20px;">
+        <span class="weight-tag" style="background:#2c3e50; color:white;">Java 17</span>
+        <span class="weight-tag">Object-Oriented</span>
+        <span class="weight-tag">Swing GUI</span>
+        <span class="weight-tag">Algorithm</span>
+      </div>
+    </header>
+
+    <div class="section-card">
+      <h2><i class="fas fa-chess-board"></i> 專案概述</h2>
+      <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 300px;">
+          <p style="line-height: 1.8; color:#555;">
+            這是一個使用純 Java 開發的單機版五子棋遊戲。專案的核心在於實現一個能與玩家進行策略對抗的 AI。
+            <br><br>
+            不同於深度學習，此 AI 採用了經典的<strong>「啟發式評估」</strong>演算法。透過掃描棋盤上的每一個空位，計算其「攻擊價值」與「防守價值」，並根據當前的難度設定來決定最佳落子點。
+          </p>
+          <ul style="color:#555; line-height:1.8; margin-top:15px;">
+            <li> 支援三種難度調整 (簡單/普通/困難)</li>
+            <li> 即時運算落子權重 (不需連網)</li>
+            <li> 具備圖形化介面 (GUI)</li>
+          </ul>
+        </div>
+        <div style="flex: 1; min-width: 300px;">
+          <img src="gomoku.png" alt="五子棋介面展示" style="width:100%; border-radius:8px; border:1px solid #eee;">
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <h2><i class="fas fa-brain"></i> AI 決策流程 (Decision Making)</h2>
+      <p style="color:#666;">
+        AI 的每一次落子，都是經過以下四個步驟的精密運算：
+      </p>
+
+      <div class="logic-grid">
+        
+        <div class="logic-card">
+          <div class="logic-icon"><i class="fas fa-search-location"></i></div>
+          <div class="logic-title">1. 全盤掃描</div>
+          <div class="logic-desc">
+            遍歷 15x15 的棋盤陣列，找出所有尚未落子的空位 (EMPTY)。
+          </div>
+          <div style="margin-top:10px; font-size:0.8em; color:#999;">
+          </div>
+        </div>
+
+        <div class="logic-card">
+          <div class="logic-icon"><i class="fas fa-shield-alt"></i></div>
+          <div class="logic-title">2. 攻守模擬</div>
+          <div class="logic-desc">
+            針對每個空位，分別假設「如果我下這裡(攻擊)」和「如果對手下這裡(防守)」能連成幾顆子。
+          </div>
+          <div style="margin-top:10px;">
+            <span class="weight-tag">Attack Score</span>
+            <span class="weight-tag">Defense Score</span>
+          </div>
+        </div>
+
+        <div class="logic-card">
+          <div class="logic-icon"><i class="fas fa-balance-scale"></i></div>
+          <div class="logic-title">3. 權重總分</div>
+          <div class="logic-desc">
+            依據難度係數 (Defense Weight)，將攻守分數加權合併。困難模式會更重視防守。
+          </div>
+          <div style="margin-top:10px; font-size:0.8em; color:#999;">
+          </div>
+        </div>
+
+        <div class="logic-card">
+          <div class="logic-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="logic-title">4. 擇優落子</div>
+          <div class="logic-desc">
+            比較所有空位的總分，選出分數最高的位置 (Best Move) 進行落子，並加入微小隨機數避免死板。
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="section-card">
+      <h2><i class="fas fa-code"></i> 關鍵程式碼實作</h2>
+      <p style="color:#666; margin-bottom:20px;">
+        以下是 AI 評估系統的核心片段。<code>evaluation()</code> 函式負責計算單點在八個方向上的連線潛力。
+      </p>
+
+      <div class="code-display">
+<span class="kw">public</span> <span class="type">void</span> <span class="func">aiMove</span>(<span class="type">int</span>[][] grid) {
+    <span class="type">double</span> bestScore = -100000;
+
+    <span class="comment">// 根據難度調整防守係數</span>
+    <span class="type">double</span> defenseWeight = 1.0;
+    <span class="kw">if</span> (difficultyLevel == 2) defenseWeight = 2.5; <span class="comment">// 困難模式：極度重視防守</span>
+
+    <span class="comment">// 遍歷棋盤</span>
+    <span class="kw">for</span> (<span class="type">int</span> y = 0; y < BOARD_SIZE; y++) {
+        <span class="kw">for</span> (<span class="type">int</span> x = 0; x < BOARD_SIZE; x++) {
+            <span class="kw">if</span> (grid[y][x] == EMPTY) {
+                
+                <span class="comment">// 1. 計算進攻分數</span>
+                grid[y][x] = AI_COLOR;
+                <span class="type">double</span> attack = evaluation(grid, x, y);
+                
+                <span class="comment">// 2. 計算防守分數 (模擬玩家下這)</span>
+                grid[y][x] = PLAYER_COLOR;
+                <span class="type">double</span> defense = evaluation(grid, x, y);
+                
+                <span class="comment">// 3. 加權總分 (加入微量隨機數增加變化性)</span>
+                <span class="type">double</span> total = attack * 1.1 + defense * defenseWeight;
+                total += Math.random() * 5;
+
+                <span class="comment">// 4. 更新最佳解</span>
+                <span class="kw">if</span> (total > bestScore) {
+                    bestScore = total;
+                    bestX = x;
+                    bestY = y;
+                }
+            }
+        }
+    }
+}
+      </div>
+      
+      <p style="color:#666; font-size:0.9em; margin-top:20px;">
+        <strong>技術亮點：</strong> 透過 <code>getScore</code> 函式，我們給予不同連線數極大的分數差距（例如 4 連子給 1000 分，5 連子給 10000 分），確保 AI 會優先選擇「致勝」或「救命」的關鍵點。
+      </p>
+    </div>
+
+    <div style="text-align:center; margin-top:40px;">
+      <a href="index.html" style="background:#3498db; color:white; padding:12px 30px; border-radius:30px; text-decoration:none; font-weight:bold; transition:0.3s;">
+        <i class="fas fa-home"></i> 返回作品集首頁
+      </a>
+      <p style="color:#999; font-size:0.8em; margin-top:15px;">
+        Project Status: Completed
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

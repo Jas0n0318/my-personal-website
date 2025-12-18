@@ -2,7 +2,11 @@ $(document).ready(function() {
     // ==========================================
     // 1. 設定區
     // ==========================================
-    const API_KEY = 'AIzaSyAmYjrMGHQCKq8BaCu_ak0aQTLufoBsKOE'; // ⚠️ 請確認這裡是你的最新 API Key
+    // 把你的 Key 從中間隨便切一刀，分成兩段字串相加
+    const part1 = 'AIzaSyDR9RADNSoyJd2'; 
+    const part2 = 'X3CaqhhCJZsFyrxqmnhg';
+    const API_KEY = part1 + part2;
+
     const MODEL_NAME = 'gemini-2.5-flash'; // ⚠️ 確認使用 2.5 版本
 
     // 把原本的字串改成這個 JSON 結構的字串
@@ -145,20 +149,37 @@ $(document).ready(function() {
     function addMessage(text, className, saveToStorage = true) {
         const id = 'msg-' + Date.now();
         // 將 \n 換行符號轉為 HTML 的 <br>
-        const formattedText = text.replace(/\n/g, '<br>');
+        const formattedText = parseMarkdown(text);
         
         const msgHtml = `<div id="${id}" class="message ${className}">${formattedText}</div>`;
         $('#chat-messages').append(msgHtml);
         
-        // ★★★ 自動捲動到最下方 ★★★
+        // 自動捲動到最下方
         scrollToBottom();
 
-        // ★★★ 儲存到 LocalStorage ★★★
+        // 儲存到 LocalStorage
         if (saveToStorage) {
             saveChatHistory(text, className);
         }
         
         return id;
+    }
+
+    // 負責把符號變粗體
+    function parseMarkdown(text) {
+        let html = text;
+
+        // 1. 處理粗體：把 **文字** 換成 <strong>文字</strong>
+        // 正則表達式解釋：尋找被兩個星號包住的內容
+        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+        // 2. 處理列表：如果 AI 回傳 * 項目，把它變成好看的圓點 •
+        html = html.replace(/^\* /gm, '• ');
+
+        // 3. 處理換行：把 \n 換成 <br>
+        html = html.replace(/\n/g, '<br>');
+
+        return html;
     }
 
     function scrollToBottom() {

@@ -31,6 +31,64 @@ body {
 }
 
 /* =========================================
+   背景動態特效
+   ========================================= */
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.shape {
+  position: absolute;
+  opacity: 0.3; /* 提高不透明度，讓它看得更清楚 */
+  filter: blur(25px); /* 降低模糊度 (原本 50px -> 25px)，輪廓會比較明顯 */
+  animation: float 15s infinite linear; /* 加快旋轉速度 */
+  z-index: -3;
+  transition: margin 2.5s cubic-bezier(0.1, 0.8, 0.2, 1);
+}
+
+/* 定義形狀：不再是正圓形，而是不規則的流體 (Blob) */
+.shape-1 {
+  width: 400px; height: 400px;
+  /* 漸層色：讓旋轉時看得出顏色在跑 */
+  background: linear-gradient(45deg, #35879c, #4facfe);
+  top: -100px; left: -100px;
+  /* 不規則圓角：左上右下比較圓，右上左下比較尖 */
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+}
+
+.shape-2 {
+  width: 300px; height: 300px;
+  background: linear-gradient(135deg, #ff9a9e, #fecfef); /* 粉橘色漸層 */
+  top: 40%; right: -100px;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  animation-duration: 20s;
+  animation-direction: reverse; /* 反轉 */
+}
+
+.shape-3 {
+  width: 200px; height: 200px;
+  background: linear-gradient(to right, #a18cd1, #fbc2eb); /* 紫色漸層 */
+  bottom: 10%; left: 10%;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  animation-duration: 18s;
+}
+
+
+/* 讓原本的旋轉動畫稍微有點「變形」的效果，看起來像水球在動 */
+@keyframes float {
+  0% { transform: rotate(0deg) scale(1); }
+  33% { transform: rotate(120deg) scale(1.1); } /* 轉的時候稍微變大 */
+  66% { transform: rotate(240deg) scale(0.95); } /* 然後變小 */
+  100% { transform: rotate(360deg) scale(1); }
+}
+/* =========================================
    2. 導覽列 (Sticky Navigation)
    ========================================= */
 nav {
@@ -41,7 +99,7 @@ nav {
   flex-wrap: wrap;
   position: sticky; /* 黏在頂端 */
   top: 0;
-  z-index: 100; /* 確保蓋過內容 */
+  z-index: 1000; /* 確保蓋過內容 */
   box-shadow: var(--shadow-sm);
 }
 
@@ -80,15 +138,12 @@ nav a:hover {
    3. Hero 區塊 (首頁大圖 - 背景圖+遮罩版)
    ========================================= */
 .hero {
-  /* 1. 設定背景圖片 */
-  background-image: url("../images/header.jpg");
   /* 確保圖片覆蓋整個區塊，且居中顯示 */
   background-size: cover;
   background-position: center;
   /* 視差滾動效果 (圖片固定，網頁捲動)，增加高級感 */
   background-attachment: fixed; 
-  
-  position: relative;
+  position: relative; 
   /* 設定高度：可以是固定像素 (如 450px) 或是螢幕高度的百分比 (如 60vh) */
   height: 50vh; 
   min-height: 400px; /* 至少要有 400px 高 */
@@ -98,10 +153,12 @@ nav a:hover {
   align-items: center;
   justify-content: center;
   padding: 0; /* 這裡不需要內距，因為 overlay 會填滿 */
+  z-index: 1;
 }
 
 /* 2. 深色遮罩層 */
 .hero .overlay {
+  position: relative;
   /* 關鍵：使用深色漸層遮罩 */
   /* 從「深藍灰」漸層到「深黑色」，透明度約 70% (0.7)，確保文字清晰 */
   background: linear-gradient(135deg, rgba(44, 62, 80, 0.8), rgba(0, 0, 0, 0.7));
@@ -118,10 +175,8 @@ nav a:hover {
   text-align: center;
   color: white; /* 文字統一為白色 */
   padding: 20px; /* 防止手機版文字貼邊 */
+  z-index: 2;
 }
-
-/* 移除之前加的 .hero-image 樣式，因為不需要了 */
-/* .hero-image { ... } */
 
 .hero h1 {
   font-size: 3.5em; /* 標題大一點更有氣勢 */
@@ -205,55 +260,125 @@ h2::after {
   transform: scale(1.02); /* 滑鼠移過去稍微放大 */
 }
 
+
+
 /* =========================================
-   6. 經歷 & 教學 (卡片式設計)
+   Bento Grid 樣式 (精選展示)
    ========================================= */
-/* 這裡假設你的經歷段落可以用一個 div 包起來，或者直接套用 p */
-section#experience p, 
-section#teaching ul {
-  background-color: var(--card-bg);
-  padding: 30px;
-  border-radius: var(--radius);
-  border-left: 5px solid var(--primary-color); /* 左側裝飾線 */
+#highlights {
+  max-width: 1000px; /* 限制最大寬度，避免滿版 */
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.bento-grid {
+  display: grid;
+  /* 定義四列格線 */
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 250px); /* 兩排高度 */
+  gap: 20px;
+}
+
+/* --- 個別格子的設定 --- */
+.bento-item {
+  background-color: white;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
   box-shadow: var(--shadow-sm);
-  line-height: 1.8;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* 文字內容在下方 */
 }
 
-/* =========================================
-   7. 吉他作品 (影片與按鈕)
-   ========================================= */
-h3 {
-  color: var(--primary-dark);
-  margin-top: 40px;
+.bento-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
 }
 
-button {
+/* 圖片設定：絕對定位填滿格子 */
+.bento-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.5s;
+}
+
+.bento-item:hover img {
+  transform: scale(1.05);
+}
+
+/* 文字內容設定 (疊在圖片上的漸層) */
+.bento-content {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+  color: white;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bento-content h3 {
+  margin: 5px 0;
+  font-size: 1.2em;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.bento-content p {
+  margin: 0;
+  font-size: 0.9em;
+  opacity: 0.9;
+}
+
+.bento-tag {
   background-color: var(--primary-color);
   color: white;
-  border: none;
-  padding: 10px 24px;
-  margin: 15px 0;
-  cursor: pointer;
-  border-radius: 30px; /* 變回膠囊狀 */
-  font-size: 0.95em;
-  font-weight: 500;
-  box-shadow: 0 4px 6px rgba(53, 135, 156, 0.3);
-  transition: all 0.3s ease;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75em;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 5px;
 }
 
-button:hover {
-  background-color: var(--primary-dark);
-  transform: translateY(-2px); /* 向上浮起 */
-  box-shadow: 0 6px 12px rgba(53, 135, 156, 0.4);
+/* --- 格子大小分配 (Grid Area) --- */
+
+/* 大格子：跨 2 格寬 */
+.item-main {
+  grid-column: span 2; 
 }
 
-iframe {
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-lg);
-  margin-top: 10px;
-  max-width: 100%; /* 確保手機不破版 */
+/* 直長格子：跨 2 格高 (適合放證書) */
+.item-tall {
+  grid-row: span 2;
 }
 
+/* 寬格子：跨 2 格寬 (適合放遊戲寬圖) */
+.item-wide {
+  grid-column: span 2;
+}
+
+/* 手機版 RWD：全部變成單欄直排 */
+@media (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: 1fr; /* 只有一欄 */
+    grid-template-rows: auto;   /* 高度自動 */
+  }
+  
+  .item-main, .item-tall, .item-wide {
+    grid-column: auto;
+    grid-row: auto;
+    height: 250px; /* 手機版固定每格高度 */
+  }
+}
 /* =========================================
    8. 聯絡我 & Footer
    ========================================= */
@@ -489,4 +614,103 @@ nav a:not(.nav-portfolio) {
 /* 移除原本的底線動畫 */
 .nav-portfolio::after {
   display: none !important;
+}
+
+/* 聊天室內的粗體字樣式 */
+.message strong {
+  font-weight: 600;       /* 特粗 */
+  color: #253d72;
+  background-color: rgba(0,0,0,0.05); /* 淡淡的底色 */
+  border-radius: 4px;     /* 圓角 */
+}
+
+/* =========================================
+   聯絡表單樣式 (Final Version)
+   ========================================= */
+/* =========================================
+   聯絡表單樣式 (單欄置中版)
+   ========================================= */
+.contact-container {
+  /* 設定最大寬度，避免表單在電腦螢幕上寬得太誇張 */
+  max-width: 600px; 
+  margin: 0 auto; /* 水平置中 */
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border: 1px solid #eee;
+}
+
+#contact-form {
+  width: 100%; /* 填滿容器 */
+}
+
+/* 表單元件 */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--secondary-color);
+  font-size: 0.95em;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1em;
+  font-family: inherit;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  
+  /* ★★★ 關鍵修改：只允許垂直縮放 ★★★ */
+  resize: vertical; 
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+  background-color: white;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(53, 135, 156, 0.15);
+}
+
+.btn-submit {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  font-size: 1.1em;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.btn-submit:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(53, 135, 156, 0.3);
+}
+
+.btn-submit:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 手機版適配 (稍微減少內距即可) */
+@media (max-width: 768px) {
+  .contact-container {
+    padding: 25px;
+    width: 90%; /* 手機上不要太貼邊 */
+  }
 }

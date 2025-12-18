@@ -15,12 +15,17 @@
     </div>
   </header>
 
+  <div class="animated-background">
+  <div class="shape shape-1" data-speed="6"></div>
+  <div class="shape shape-2" data-speed="-6"></div>
+  <div class="shape shape-3" data-speed="4"></div>
+  </div>
+
   <nav>
     <a href="#about">自我介紹</a>
     <a href="#experience">我的經歷</a>
-    <a href="#guitar">吉他作品集</a>
-    <a href="#teaching">教學內容</a>
-    <a href="game/" class="nav-portfolio" target="_self">作品集</a>
+    <a href="portfolio/" target="_self" class="nav-portfolio">作品集</a>
+    <a href="#highlights">近期展示</a>
     <a href="#contact">聯絡我</a>
   </nav>
 
@@ -28,7 +33,7 @@
     <section id="about">
       <h2>自我介紹</h2>
       <div id="about-wrapper">
-        <p>我是吳晏均，目前大學二年級，主修數位學習科技學系。本科系主要培養學生在「教育」與科技兩大領域的跨領域能力。目前正運用所學於「程式設計老師」的工作中，協助學生理解邏輯概念、尋找/除錯問題，強化學生的學習動機與成果
+        <p>我是吳晏均，目前大學三年級，主修數位學習科技學系。本科系主要培養學生在「教育」與科技兩大領域的跨領域能力。目前正運用所學於「程式設計老師」的工作中，協助學生理解邏輯概念、尋找/除錯問題，強化學生的學習動機與成果
         。在累積豐富教學技巧的同時，也培養了清晰的溝通、領導能力。我的個性溫和、樂於與人合作具備良好的團隊精神與溝通能力。在高中、大學擔任吉他社與多項班級幹部，累積豐富的活動企劃與執行經驗，也善於觀察與
         理解他人情緒，能夠快速融入團隊並建立信任關係。
         </p>
@@ -38,72 +43,237 @@
 
     <section id="experience">
       <h2>我的經歷</h2>
-      <p>工作經歷方面，我目前任職的程式設計老師需要協助Scrach、Python、JavaScript、HTML/CSS的學生，暑假也有教學國小4~6年級的Roblox Studio營隊。擅長引導學生偵錯，
+      <p>工作經歷方面，我目前任職的程式設計老師需要協助Scrach、Python、JavaScript、HTML/CSS、網路與資料庫、演算法、AI人工智慧的學生，暑假也有教學國小4~6年級的Roblox Studio營隊。擅長引導學生偵錯，
       有耐心的陪伴學生一起處理問題。同時也具備了美感與空間感，受聘於學校的教務處教學組製作課程宣傳海報和維護後台，也有使用blender製作過動畫的經驗。目前致
       力於在職場中學習，對於版面編排與網頁設計很感興趣！<br><br>我重視學習與反思，樂於接觸新事物，期待未來能持續拓展跨領域的專業能力，並與團隊一同創造價值。</p>
     </section>
 
-    <section id="guitar">
-      <h2>吉他作品集</h2>
-      <p>過往的表演/活動紀錄</p>
+    <section id="highlights">
+    <h2>近期展示</h2>
+    <p style="text-align: center; margin-bottom: 40px; color: #666;">
+      跨足 3D 設計、遊戲開發與程式教育的探索旅程
+    </p>
+
+    <div class="bento-grid">
       
-      <h3>大學成果發表《夢境》</h3>
-      <p>曲目：〈不愛自己了〉</p>
-      <button id="youtube_btn1">顯示/隱藏</button>
-      <iframe width="560" height="315" id="youtube1"
-              src="https://www.youtube.com/embed/ZzYrKpaR1D4" 
-              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen></iframe>
+      <div class="bento-item item-main">
+        <div class="bento-content">
+          <span class="bento-tag">3D Art</span>
+          <h3>Blender 遊戲角色設計</h3>
+          <p>探索光影與建模的數位藝術創作</p>
+        </div>
+        <img src="images/blender_show.png" alt="Blender作品">
+      </div>
 
-      <h3>高中小型成發《修蛋吉勒》</h3>
-      <p>曲目：〈讓我為你唱情歌〉</p>
-      <button id="youtube_btn2">顯示/隱藏</button>
-      <iframe width="560" height="315" id="youtube2"
-              src="https://www.youtube.com/embed/GF0beGb34go" 
-              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen></iframe>
-    </section>
+      <div class="bento-item item-secondary">
+        <div class="bento-content">
+          <span class="bento-tag">Frontend</span>
+          <h3>React 企業實習</h3>
+          <p>多國語言系統開發</p>
+        </div>
+        <img src="portfolio/i18n.png" alt="實習專案">
+      </div>
 
+      <div class="bento-item item-wide">
+        <div class="bento-content">
+          <span class="bento-tag">Game Dev</span>
+          <h3>Roblox Studio 專案</h3>
+          <p>營隊教學使用的自製遊戲關卡</p>
+        </div>
+        <img src="images/roblox_show.png" alt="Roblox遊戲">
+      </div>
 
-    <section id="teaching">
-      <h2>教學內容</h2>
-      <p>分享新手吉他教學與課程筆記，會持續更新：</p>
-      <ul>
-        <li>和弦的組成——三和弦與七和弦</li>
-        <iframe src="assets/chord_0.pdf" width="100%" height="600px"></iframe>
-      </ul>
-    </section>
+      <div class="bento-item item-tall">
+        <div class="bento-content">
+          <span class="bento-tag">Education</span>
+          <h3>教學認證</h3>
+        </div>
+        <img src="images/certificate.png" alt="證書">
+      </div>
+
+    </div>
+  </section>
 
     <section id="contact">
-      <h2>聯絡我</h2>
-      <div class="contact-box">
-        <p>如果你對我的吉他/國小、國中學科家教、有興趣，歡迎來信聯絡我！</p>
-        <p>📧 電子信箱：jason2005940318@gmail.com</p>
-        <p>📱 電話：0926-147-755</p>
+  <h2>聯絡我</h2>
+  <p style="text-align: center; margin-bottom: 30px;">
+    有任何合作機會，歡迎填寫表單，我會盡快回覆您！
+  </p>
+
+  <div class="contact-container">
+    <form id="contact-form">
+      <div class="form-group">
+        <label for="user_name">您的稱呼 *</label>
+        <input type="text" name="user_name" id="user_name" required placeholder="王小明">
       </div>
-    </section>
+      
+      <div class="form-group">
+        <label for="user_email">電子信箱 *</label>
+        <input type="email" name="user_email" id="user_email" required placeholder="name@example.com">
+      </div>
+
+      <div class="form-group">
+        <label for="user_phone">聯絡電話</label>
+        <input type="tel" name="user_phone" id="user_phone" pattern="[0-9]*" placeholder="0912345678 (選填)">
+      </div>
+
+      <div class="form-group">
+        <label for="message">訊息內容 *</label>
+        <textarea name="message" id="message" rows="5" required placeholder="請輸入您的合作需求或問題..."></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit">
+        <i class="fas fa-paper-plane"></i> 發送訊息
+      </button>
+    </form>
+  </div>
+</section>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script type="text/javascript">
+   (function(){
+      // ★★★ 請在此填入你的 Public Key ★★★
+      emailjs.init("JpxADtXF-ZCaK7kjp");
+   })();
+
+   // 監聽表單送出
+   document.getElementById('contact-form').addEventListener('submit', function(event) {
+     event.preventDefault(); // 阻止頁面跳轉
+
+     const btn = this.querySelector('.btn-submit');
+     const originalText = btn.innerHTML;
+
+     // 按鈕變更狀態
+     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 發送中...';
+     btn.disabled = true;
+
+     // 發送郵件
+     // ★★★ 請在此填入 Service ID 和 Template ID ★★★
+     emailjs.sendForm('service_fk8cxcy', 'template_s4dfw4n', this)
+       .then(function() {
+           alert('✅ 發送成功！我已收到您的訊息。');
+           btn.innerHTML = originalText;
+           btn.disabled = false;
+           document.getElementById('contact-form').reset(); // 清空表單
+       }, function(error) {
+           alert('❌ 發送失敗，請稍後再試。');
+           console.log('FAILED...', error);
+           btn.innerHTML = originalText;
+           btn.disabled = false;
+       });
+   });
+</script>
 
   </div>
 
-  <script>
-    $(".page-content").animate({
-      right:"0px",
-      opacity:1
-    },800);
+    <script>
+      $(".page-content").animate({
+        right:"0px",
+        opacity:1
+      },800);
 
-    $("#youtube_btn1").click(function() {
-      $("#youtube1").slideToggle();
-    });
+      $("#youtube_btn1").click(function() {
+        $("#youtube1").slideToggle();
+      });
 
-    $("#youtube_btn2").click(function() {
-      $("#youtube2").slideToggle();
-    });
-  </script>
+      $("#youtube_btn2").click(function() {
+        $("#youtube2").slideToggle();
+      });
+      
+      // 定義全域變數
+      let mouseX_Offset = 0;
+      let mouseY_Offset = 0;
+      let scroll_Offset = 0;
+      let scrollTimer = null;
+      let lastScrollY = window.scrollY;
+      
+      // 效能優化變數
+      let isTicking = false; 
+      let isPaused = false; // ★★★ 新增：暫停開關 (解決拉動卡頓的關鍵)
 
+      // 1. 核心更新函式
+      function updateShapes() {
+        // 如果處於暫停狀態 (例如正在拉 Textarea)，就不更新位置
+        if (isPaused) return;
+
+        const shapes = document.querySelectorAll('.shape');
+        
+        shapes.forEach(shape => {
+          const speed = parseFloat(shape.getAttribute('data-speed'));
+
+          const finalX = (mouseX_Offset * speed);
+          
+          // ★★★ 修改這裡：把 1.2 改成 2.0 (讓滾動時飄得更遠) ★★★
+          // 配合 CSS 的 2.5s，這會產生一種「被大風吹走後慢慢飄回來」的感覺
+          const finalY = (mouseY_Offset * speed) + (scroll_Offset * speed * 2.0); 
+
+          shape.style.marginLeft = `${finalX}px`;
+          shape.style.marginTop = `${finalY}px`;
+        });
+      }
+
+      // 2. 解決 Textarea 拉動卡頓 (關鍵優化)
+      const textarea = document.getElementById('message');
+      if (textarea) {
+        // 當滑鼠在 textarea 按下時 (準備輸入或拉動) -> 暫停背景
+        textarea.addEventListener('mousedown', () => {
+          isPaused = true;
+        });
+
+        // 當滑鼠放開時 (無論在哪裡放開) -> 恢復背景
+        document.addEventListener('mouseup', () => {
+          isPaused = false;
+        });
+      }
+
+      // 3. 監聽滑鼠移動 (含節流閥)
+      document.addEventListener('mousemove', (e) => {
+        if (isPaused) return; // 如果暫停中，連算都不用算，直接結束
+
+        if (!isTicking) {
+          window.requestAnimationFrame(() => {
+            mouseX_Offset = (window.innerWidth - e.clientX) / 20;
+            mouseY_Offset = (window.innerHeight - e.clientY) / 20;
+            updateShapes();
+            isTicking = false;
+          });
+          isTicking = true;
+        }
+      });
+
+      // 4. 監聽滾輪 (含節流閥)
+      document.addEventListener('scroll', () => {
+        // 滾動通常不會跟 Textarea 拉動同時發生，所以這裡不用鎖 isPaused
+        // 但我們加上 requestAnimationFrame 讓滾動更順滑
+        
+        const currentScrollY = window.scrollY;
+        const velocity = currentScrollY - lastScrollY;
+        
+        // 更新偏移量
+        scroll_Offset = -velocity; 
+        lastScrollY = currentScrollY;
+
+        if (!isTicking) {
+          window.requestAnimationFrame(() => {
+              updateShapes();
+              isTicking = false;
+          });
+          isTicking = true;
+        }
+
+        // 5. 滾動停止偵測
+        if (scrollTimer) clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+          scroll_Offset = 0; // 歸零
+          updateShapes();    // 觸發 CSS 的 2.5s 慢速回彈
+        }, 100);
+      });
+    </script>
   <script src="js/chat.js"></script>
 
   <footer>
-    &copy; 2025 06 吳晏均 | 手工打造個人網站
+    &copy; 2025 12 吳晏均 | 打造個人網站
   </footer>
 </body>
 </html>

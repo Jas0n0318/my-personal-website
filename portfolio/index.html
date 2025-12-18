@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>作品集 | 吳晏均的個人網站</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* 這裡寫針對作品集頁面的特別樣式 */
+    
+    /* 讓背景跟主網站一樣 */
+    body {
+      background-color: var(--bg-color);
+      padding-top: 80px; /* 避開導覽列 */
+    }
+
+    /* 頁面標題區 */
+    .portfolio-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .portfolio-header h1 {
+      color: var(--secondary-color);
+      font-size: 2.5em;
+      margin-top: 10px;
+    }
+
+    /* --- 卡片格線系統 (Grid System) --- */
+    .portfolio-grid {
+      display: grid;
+      /* 自動適應寬度：每張卡片最窄 300px，剩餘空間平分 */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* --- 卡片設計 (參考你的附圖) --- */
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden; /* 讓圖片圓角不跑出去 */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #eee;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px); /* 浮起效果 */
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    /* 卡片圖片區 */
+    .card-image {
+      width: 100%;
+      height: 200px;
+      background-color: #f0f0f0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* 保持比例填滿 */
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .card-image img {
+      transform: scale(1.1); /* 圖片放大特效 */
+    }
+
+    /* 卡片內容區 */
+    .card-body {
+      padding: 25px;
+      flex: 1; /* 讓內容區撐開高度 */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: var(--secondary-color);
+      margin: 0 0 15px 0;
+    }
+
+    .card-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+      flex: 1;
+      color: #666;
+      font-size: 0.95em;
+      line-height: 1.8;
+    }
+
+    .card-features li::before {
+      content: "•";
+      color: var(--primary-color);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+
+    .card-price {
+      color: #e74c3c; /* 紅色強調 */
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    /* 藍色按鈕 (參考附圖) */
+    .view-btn {
+      display: block;
+      width: 100%;
+      padding: 12px 0;
+      background-color: #007bff; /* 亮藍色 */
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .view-btn:hover {
+      background-color: #0056b3; /* 深藍色 */
+    }
+
+    /* 返回首頁按鈕 */
+    .back-home {
+      display: block;
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 50px;
+      color: #666;
+      text-decoration: none;
+    }
+    .back-home:hover {
+      color: var(--primary-color);
+    }
+  </style>
+</head>
+<body>
+
+  <nav style="position:fixed; top:0; width:100%;">
+    <a href="../index.html">← 回到首頁</a>
+    <a href="#portfolio">作品集展示</a>
+  </nav>
+
+  <div class="portfolio-header">
+    <h1 id="my-portfolio">我的作品集</h1>
+    <p>這裡收藏了我開發的小遊戲、工具與專案</p>
+  </div>
+
+  <div class="portfolio-grid">
+
+    <div class="product-card">
+      <div class="card-image">
+        <img src="i18n.png" alt="全球化多國語言概念圖">
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">企業多國語言系統(實習)</h3>
+        
+        <ul class="card-features">
+          <li>導入 React i18n 國際化架構</li>
+          <li>採 JSON 資源檔分離管理</li>
+          <li>實現精準的企業術語控制</li>
+        </ul>
+        
+        <div class="card-price">專案狀態：已完成</div>
+        
+        <a href="i18n.html" class="view-btn">查看更多</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-image">
+        <img src="unity.png" alt="專案預覽">
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">3D遊戲建模與製作</h3>
+        <ul class="card-features">
+          <li>Blender建模與動畫製作</li>
+          <li>Unity遊戲引擎整合</li>
+          <li>AI路徑搜尋追擊玩家</li>
+        </ul>
+        <div class="card-price">專案狀態：製作中</div>
+        <a href="horror_game.html" class="view-btn">查看更多</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-image">
+        <img src="gomoku.png" alt="五子棋AI">
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">五子棋AI</h3>
+        <ul class="card-features">
+          <li>Java編撰</li>
+          <li>簡單流暢的操作介面</li>
+          <li>評估函式與分數計算</li>
+        </ul>
+        <div class="card-price">專案狀態：已完成</div>
+        <a href="gomoku.html" class="view-btn">查看更多</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

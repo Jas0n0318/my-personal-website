@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D 恐怖生存遊戲開發 | 吳晏均的作品集</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+    /* --- 專案頁面專屬樣式 (從 i18n.html 複製而來) --- */
+    body {
+      background-color: #f8f9fa;
+      padding-top: 80px;
+    }
+
+    .project-container {
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      padding: 0 20px;
+    }
+
+    /* 標題區 */
+    .project-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .project-header h1 {
+      font-size: 2.2em;
+      color: var(--secondary-color);
+      margin-bottom: 10px;
+    }
+
+    .tech-badges {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .badge {
+      background-color: #e3e8eb;
+      color: var(--secondary-color);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      font-weight: 500;
+    }
+
+    .badge.highlight {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    /* 展示區 (GIF/Video) */
+    .demo-wrapper {
+      background: white;
+      padding: 10px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 50px;
+      border: 1px solid #eee;
+    }
+
+    .demo-wrapper img, .demo-wrapper video {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+    }
+
+    /* 內容區塊 */
+    .content-section {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 30px;
+    }
+
+    .content-section h2 {
+      font-size: 1.5em;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 15px;
+      margin-top: 0;
+    }
+
+    .content-section p, .content-section ul {
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    
+    .content-section li {
+      margin-bottom: 10px;
+    }
+
+    /* --- 精美流程圖 (CSS Flowchart) --- */
+    .workflow-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 40px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .flow-step {
+      flex: 1;
+      min-width: 200px;
+      background: #fdfdfd;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s;
+    }
+
+    .flow-step:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-sm);
+      border-color: var(--primary-color);
+    }
+
+    .step-icon {
+      width: 50px;
+      height: 50px;
+      background-color: rgba(53, 135, 156, 0.1);
+      color: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin: 0 auto 15px auto;
+    }
+
+    .step-title {
+      font-weight: bold;
+      color: var(--secondary-color);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .step-desc {
+      font-size: 0.85em;
+      color: #777;
+    }
+
+    /* 箭頭連接符號 */
+    .flow-arrow {
+      align-self: center;
+      color: #ccc;
+      font-size: 20px;
+    }
+
+    /* 手機版讓流程圖變垂直 */
+    @media (max-width: 768px) {
+      .workflow-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .flow-arrow {
+        transform: rotate(90deg); /* 箭頭轉向下 */
+        margin: 10px 0;
+      }
+    }
+
+    /* 按鈕區 */
+    .action-area {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .btn-live {
+      background-color: var(--secondary-color);
+      color: white;
+      text-decoration: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-live:hover {
+      background-color: #1a252f;
+      transform: translateY(-2px);
+    }
+    
+    .disclaimer {
+      font-size: 0.8em;
+      color: #999;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav style="position:fixed; top:0; width:100%; z-index:1000; background:rgba(44, 62, 80, 0.95);; backdrop-filter:blur(5px); border-bottom:1px solid #eee; padding:15px 0;">
+    <div style="max-width:900px; margin:0 auto; padding:0 20px;">
+      <a href="index.html" style="text-decoration:none; color:#ffffff; font-weight:bold;">← 回作品集列表</a>
+        <span style="color:#ddd; margin:0 10px;">|</span>
+        <a href="#" style="color:#ffffff">3D 恐怖生存遊戲開發</a>
+    </div>
+  </nav>
+
+  <div class="project-container">
+    
+    <header class="project-header">
+      <h1>3D 恐怖生存遊戲開發</h1>
+      <p>Blender 人物設計 × Unity 引擎整合 (開發中)</p>
+      <div class="tech-badges">
+        <span class="badge highlight">Unity</span>
+        <span class="badge highlight">Blender</span>
+        <span class="badge">C#</span>
+        <span class="badge">Animation</span>
+      </div>
+    </header>
+
+    <div class="demo-wrapper">
+      <img src="/images/blender_show.png" alt="恐怖遊戲角色預覽">
+      
+      <div style="text-align:center; padding:10px; color:#666; font-size:0.9em;">
+        目前進度：角色建模與基礎動畫 (Idle/Chase) 完成
+      </div>
+    </div>
+
+    <section class="content-section">
+      <h2>專案背景與設計理念</h2>
+      <p>
+        這不只是一個單純的 Pac-Man 復刻，而是一次將<strong>「經典演算法」</strong>與<strong>「現代遊戲引擎技術」</strong>結合的實驗。
+        靈感來自網路都市傳說「The Backrooms」，我將 Pac-Man 的迷宮轉化為陰暗、壓抑的 3D 空間。玩家不再是俯瞰全場的上帝視角，而是身處迷宮之中，面對四隻具有獨特 AI 個性的恐怖實體 (Entities)。
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>3D 開發流程 (Pipeline)</h2>
+      <p>為了確保美術資產能順利在遊戲引擎中運行，我建立了標準化的製作管線：</p>
+      
+      <div class="workflow-container">
+        
+        <div class="flow-step">
+          <div class="step-icon"><i class="fas fa-cube"></i></div>
+          <span class="step-title">1. 建模與拓撲<br>(Modeling)</span>
+          <div class="step-desc">
+            在 Blender 中進行高模雕刻，並進行 Retopology 優化布線，將面數控制在 15k 以內以符合效能需求。
+          </div>
+        </div>
+
+        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+
+        <div class="flow-step">
+          <div class="step-icon"><i class="fas fa-bone"></i></div>
+          <span class="step-title">2. 骨架與動畫<br>(Rigging)</span>
+          <div class="step-desc">
+            架設 IK/FK 骨架系統，並製作 Idle、Walk、Run 等基礎動畫片段 (Animation Clips)。
+          </div>
+        </div>
+
+        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+
+        <div class="flow-step">
+          <div class="step-icon"><i class="fas fa-gamepad"></i></div>
+          <span class="step-title">3. 引擎整合<br>(Unity Integration)</span>
+          <div class="step-desc">
+            匯入 Unity，設定 Animator Controller 狀態機，並撰寫 C# 腳本控制角色行為。
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>技術規格與挑戰</h2>
+      <ul>
+        <li><strong>面數控制 (Polycount)：</strong> 主角模型約 12,500 Tris，確保在移動端或低規電腦也能流暢運行。</li>
+        <li><strong>PBR 材質流程：</strong> 製作 Diffuse, Normal, Roughness, Metallic 貼圖，呈現真實的光影質感。</li>
+        <li><strong>狀態機邏輯 (State Machine)：</strong> 在 Unity 中利用 Blend Tree 實現從「行走」到「奔跑」的平滑動畫過渡。</li>
+      </ul>
+    </section>
+
+  </div>
+
+</body>
+</html>

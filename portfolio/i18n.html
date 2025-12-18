@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>企業級多國語言系統 | 吳晏均的作品集</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+    /* --- 專案頁面專屬樣式 --- */
+    body {
+      background-color: #f8f9fa;
+      padding-top: 80px;
+    }
+
+    .project-container {
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      padding: 0 20px;
+    }
+
+    /* 標題區 */
+    .project-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .project-header h1 {
+      font-size: 2.2em;
+      color: var(--secondary-color);
+      margin-bottom: 10px;
+    }
+
+    .tech-badges {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .badge {
+      background-color: #e3e8eb;
+      color: var(--secondary-color);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      font-weight: 500;
+    }
+
+    .badge.highlight {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    /* 展示區 (GIF) */
+    .demo-wrapper {
+      background: white;
+      padding: 10px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 50px;
+      border: 1px solid #eee;
+    }
+
+    .demo-wrapper img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+    }
+
+    /* 內容區塊 */
+    .content-section {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 30px;
+    }
+
+    .content-section h2 {
+      font-size: 1.5em;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 15px;
+      margin-top: 0;
+    }
+
+    .content-section p {
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    /* --- 精美流程圖 (CSS Flowchart) --- */
+    .workflow-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 40px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .flow-step {
+      flex: 1;
+      min-width: 200px;
+      background: #fdfdfd;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s;
+    }
+
+    .flow-step:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-sm);
+      border-color: var(--primary-color);
+    }
+
+    .step-icon {
+      width: 50px;
+      height: 50px;
+      background-color: rgba(53, 135, 156, 0.1);
+      color: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin: 0 auto 15px auto;
+    }
+
+    .step-title {
+      font-weight: bold;
+      color: var(--secondary-color);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .step-desc {
+      font-size: 0.85em;
+      color: #777;
+    }
+
+    /* 箭頭連接符號 */
+    .flow-arrow {
+      align-self: center;
+      color: #ccc;
+      font-size: 20px;
+    }
+
+    /* 手機版讓流程圖變垂直 */
+    @media (max-width: 768px) {
+      .workflow-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .flow-arrow {
+        transform: rotate(90deg); /* 箭頭轉向下 */
+        margin: 10px 0;
+      }
+    }
+
+    /* 按鈕區 */
+    .action-area {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .btn-live {
+      background-color: var(--secondary-color);
+      color: white;
+      text-decoration: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-live:hover {
+      background-color: #1a252f;
+      transform: translateY(-2px);
+    }
+    
+    .disclaimer {
+      font-size: 0.8em;
+      color: #999;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav style="position:fixed; top:0; width:100%; z-index:1000;">
+    <a href="index.html">← 回作品集列表</a>
+    <span style="color:rgba(255,255,255,0.7); padding: 15px;">|</span>
+    <a href="#">企業多國語言系統</a>
+  </nav>
+
+  <div class="project-container">
+    
+    <header class="project-header">
+      <h1>React 多國語言架構實作</h1>
+      <p>於企業實習期間開發，解決跨國市場的在地化需求</p>
+      <div class="tech-badges">
+        <span class="badge highlight">React</span>
+        <span class="badge">i18n</span>
+        <span class="badge">LocalizationManager</span>
+        <span class="badge">JSON</span>
+      </div>
+    </header>
+
+    <div class="demo-wrapper">
+      <img src="i18n.gif" alt="多國語言切換演示">
+      <div style="text-align:center; padding:10px; color:#666; font-size:0.9em;">
+        實際操作畫面：支援日文與中文的即時無縫切換
+      </div>
+    </div>
+
+    <section class="content-section">
+      <h2>專案背景與挑戰</h2>
+      <p>
+        此專案為協助公司產品拓展至日本市場。由於產品涉及大量電力與能源相關的<strong>技術專有名詞</strong>，若使用市面上的即時自動翻譯（如 Google Translate 插件），容易造成語意偏差或專業術語錯誤，影響品牌專業度。
+      </p>
+      <p>
+        因此，我的任務是建立一套<strong>「精準控制」</strong>的前端翻譯架構，確保每一個顯示在介面上的文字，都是經過人工校對後的正確術語。
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>技術實作流程</h2>
+      <p>為了達成高效維護，我設計了以下資料流架構，將「程式邏輯」與「翻譯內容」完全分離：</p>
+      
+      <div class="workflow-container">
+        
+        <div class="flow-step">
+          <div class="step-icon"><i class="fas fa-code"></i></div>
+          <span class="step-title">1. UI 文字鍵值化<br>(Tokenization)</span>
+          <div class="step-desc">
+            利用 AI 輔助工具，將網頁中原本寫死的文字全部替換成唯一的變數代碼。
+          </div>
+        </div>
+
+        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+
+        <div class="flow-step">
+          <div class="step-icon"><i class="fas fa-database"></i></div>
+          <span class="step-title">2. 建立翻譯字典<br>(JSON Resources)</span>
+          <div class="step-desc">
+            建立 JSON 檔案庫，將 Key 值與各國語言（日文/中文）進行對照。這讓非工程師也能輕鬆維護翻譯內容。
+          </div>
+        </div>
+
+        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+
+        <div class="flow-step">
+          <div class="step-icon"><i class="fas fa-sync-alt"></i></div>
+          <span class="step-title">3. 狀態管理與渲染<br>(Localization Manager)</span>
+          <div class="step-desc">
+            透過 React 的 Context API 建構管理器，監聽語言切換事件，即時從 JSON 撈取對應文字並渲染至畫面。
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="action-area">
+      <a href="https://dc-ac.com" target="_blank" class="btn-live">
+        <i class="fas fa-external-link-alt"></i> 參觀公司實際網站
+      </a>
+      <div class="disclaimer">
+        註：網站內容可能隨公司營運策略更新，此連結導向目前線上版本。
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
