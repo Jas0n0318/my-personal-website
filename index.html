@@ -133,29 +133,25 @@
 
 <script type="text/javascript">
    (function(){
-      // ★★★ 請在此填入你的 Public Key ★★★
+
       emailjs.init("JpxADtXF-ZCaK7kjp");
    })();
 
-   // 監聽表單送出
    document.getElementById('contact-form').addEventListener('submit', function(event) {
-     event.preventDefault(); // 阻止頁面跳轉
+     event.preventDefault();
 
      const btn = this.querySelector('.btn-submit');
      const originalText = btn.innerHTML;
 
-     // 按鈕變更狀態
      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 發送中...';
      btn.disabled = true;
 
-     // 發送郵件
-     // ★★★ 請在此填入 Service ID 和 Template ID ★★★
      emailjs.sendForm('service_fk8cxcy', 'template_s4dfw4n', this)
        .then(function() {
            alert('✅ 發送成功！我已收到您的訊息。');
            btn.innerHTML = originalText;
            btn.disabled = false;
-           document.getElementById('contact-form').reset(); // 清空表單
+           document.getElementById('contact-form').reset();
        }, function(error) {
            alert('❌ 發送失敗，請稍後再試。');
            console.log('FAILED...', error);
@@ -181,20 +177,17 @@
         $("#youtube2").slideToggle();
       });
       
-      // 定義全域變數
       let mouseX_Offset = 0;
       let mouseY_Offset = 0;
       let scroll_Offset = 0;
       let scrollTimer = null;
       let lastScrollY = window.scrollY;
       
-      // 效能優化變數
       let isTicking = false; 
-      let isPaused = false; // ★★★ 新增：暫停開關 (解決拉動卡頓的關鍵)
+      let isPaused = false;
 
-      // 1. 核心更新函式
       function updateShapes() {
-        // 如果處於暫停狀態 (例如正在拉 Textarea)，就不更新位置
+
         if (isPaused) return;
 
         const shapes = document.querySelectorAll('.shape');
@@ -204,8 +197,6 @@
 
           const finalX = (mouseX_Offset * speed);
           
-          // ★★★ 修改這裡：把 1.2 改成 2.0 (讓滾動時飄得更遠) ★★★
-          // 配合 CSS 的 2.5s，這會產生一種「被大風吹走後慢慢飄回來」的感覺
           const finalY = (mouseY_Offset * speed) + (scroll_Offset * speed * 2.0); 
 
           shape.style.marginLeft = `${finalX}px`;
@@ -213,23 +204,18 @@
         });
       }
 
-      // 2. 解決 Textarea 拉動卡頓 (關鍵優化)
       const textarea = document.getElementById('message');
       if (textarea) {
-        // 當滑鼠在 textarea 按下時 (準備輸入或拉動) -> 暫停背景
         textarea.addEventListener('mousedown', () => {
           isPaused = true;
         });
-
-        // 當滑鼠放開時 (無論在哪裡放開) -> 恢復背景
         document.addEventListener('mouseup', () => {
           isPaused = false;
         });
       }
 
-      // 3. 監聽滑鼠移動 (含節流閥)
       document.addEventListener('mousemove', (e) => {
-        if (isPaused) return; // 如果暫停中，連算都不用算，直接結束
+        if (isPaused) return;
 
         if (!isTicking) {
           window.requestAnimationFrame(() => {
@@ -242,16 +228,12 @@
         }
       });
 
-      // 4. 監聽滾輪 (含節流閥)
       document.addEventListener('scroll', () => {
-        // 滾動通常不會跟 Textarea 拉動同時發生，所以這裡不用鎖 isPaused
-        // 但我們加上 requestAnimationFrame 讓滾動更順滑
         
         const currentScrollY = window.scrollY;
         const velocity = currentScrollY - lastScrollY;
         
-        // 更新偏移量
-        scroll_Offset = -velocity; 
+        scroll_Offset = -velocity * 1.5; 
         lastScrollY = currentScrollY;
 
         if (!isTicking) {
@@ -262,11 +244,10 @@
           isTicking = true;
         }
 
-        // 5. 滾動停止偵測
         if (scrollTimer) clearTimeout(scrollTimer);
         scrollTimer = setTimeout(() => {
-          scroll_Offset = 0; // 歸零
-          updateShapes();    // 觸發 CSS 的 2.5s 慢速回彈
+          scroll_Offset = 0; 
+          updateShapes(); 
         }, 100);
       });
     </script>

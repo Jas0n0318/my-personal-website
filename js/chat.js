@@ -7,9 +7,8 @@ $(document).ready(function() {
     const part2 = 'X3CaqhhCJZsFyrxqmnhg';
     const API_KEY = part1 + part2;
 
-    const MODEL_NAME = 'gemini-2.5-flash'; // ⚠️ 確認使用 2.5 版本
+    const MODEL_NAME = 'gemini-2.5-flash';
 
-    // 把原本的字串改成這個 JSON 結構的字串
     const RESUME_CONTEXT = `
         你現在是「吳晏均」個人網站的 AI 導覽員。
         你的任務是介紹吳晏均，讓面試官覺得他是個很棒的人才。
@@ -88,25 +87,20 @@ $(document).ready(function() {
     if ($('#chat-container').length === 0) {
         $('body').append(chatUI);
     }
-
-    // ★★★ 新增：讀取歷史紀錄 ★★★
     loadChatHistory();
 
     // ==========================================
     // 3. 事件監聽
     // ==========================================
     
-    // 開關聊天室
     $('#chat-toggle-btn, #close-chat').off('click').on('click', function() {
         $('#chat-container').fadeToggle();
     });
 
-    // ★★★ 新增：清除對話 ★★★
     $('#clear-chat').click(function() {
         if(confirm('確定要刪除所有對話紀錄嗎？')) {
-            localStorage.removeItem('chat_history_jason'); // 清除儲存
-            $('#chat-messages').empty(); // 清除畫面
-            // 重新加入歡迎詞
+            localStorage.removeItem('chat_history_jason'); 
+            $('#chat-messages').empty(); 
             addMessage('哈囉！我是晏均的 AI 小幫手，關於他的經歷或作品，歡迎問我喔！', 'bot-message', false); 
         }
     });
@@ -125,39 +119,32 @@ $(document).ready(function() {
         const userText = $('#user-input').val().trim();
         if (!userText) return;
 
-        // 顯示並儲存使用者訊息
         addMessage(userText, 'user-message', true);
         $('#user-input').val(''); 
         $('#user-input').focus();
         
-        // 顯示思考中 (不儲存到紀錄)
         const loadingId = addMessage('...', 'bot-message', false);
 
         try {
             const responseText = await callGeminiAPI(userText);
             
-            // 移除思考中，顯示並儲存 AI 回覆
-            $(`#${loadingId}`).remove(); // 先移除 "..."
-            addMessage(responseText, 'bot-message', true); // 再新增正式回覆
+            $(`#${loadingId}`).remove(); 
+            addMessage(responseText, 'bot-message', true);
             
         } catch (error) {
             $(`#${loadingId}`).text('系統發生錯誤，請稍後再試。');
         }
     }
 
-    // 參數 saveToStorage 控制這則訊息要不要存起來 (思考中的 ... 就不存)
     function addMessage(text, className, saveToStorage = true) {
         const id = 'msg-' + Date.now();
-        // 將 \n 換行符號轉為 HTML 的 <br>
         const formattedText = parseMarkdown(text);
         
         const msgHtml = `<div id="${id}" class="message ${className}">${formattedText}</div>`;
         $('#chat-messages').append(msgHtml);
         
-        // 自動捲動到最下方
         scrollToBottom();
 
-        // 儲存到 LocalStorage
         if (saveToStorage) {
             saveChatHistory(text, className);
         }
@@ -165,18 +152,13 @@ $(document).ready(function() {
         return id;
     }
 
-    // 負責把符號變粗體
     function parseMarkdown(text) {
         let html = text;
 
-        // 1. 處理粗體：把 **文字** 換成 <strong>文字</strong>
-        // 正則表達式解釋：尋找被兩個星號包住的內容
         html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
-        // 2. 處理列表：如果 AI 回傳 * 項目，把它變成好看的圓點 •
         html = html.replace(/^\* /gm, '• ');
 
-        // 3. 處理換行：把 \n 換成 <br>
         html = html.replace(/\n/g, '<br>');
 
         return html;
@@ -184,7 +166,6 @@ $(document).ready(function() {
 
     function scrollToBottom() {
         const chatBox = $('#chat-messages');
-        // 使用 animate 讓捲動滑順一點，直接跳轉可以用 scrollTop(chatBox[0].scrollHeight)
         chatBox.scrollTop(chatBox[0].scrollHeight);
     }
 
@@ -199,11 +180,9 @@ $(document).ready(function() {
         
         if (history && history.length > 0) {
             history.forEach(msg => {
-                // 讀取紀錄時，saveToStorage 設為 false 避免重複儲存
                 addMessage(msg.text, msg.class, false);
             });
         } else {
-            // 如果沒紀錄，顯示預設歡迎詞 (不存入歷史，這樣使用者一刪除就會看到這個)
             addMessage('哈囉！我是晏均的 AI 小幫手，關於他的經歷或作品，歡迎問我喔！', 'bot-message', false);
         }
     }
